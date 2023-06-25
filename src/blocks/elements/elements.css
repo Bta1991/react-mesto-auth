@@ -1,0 +1,29 @@
+.elements {
+  /* margin: 0; */
+  margin: 0 auto;
+  max-width: 880px;
+  /* max-width: 100%; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(2, 1fr); */
+  grid-template-rows: repeat(1, 1fr);
+  column-gap: 17px;
+  row-gap: 20px;
+justify-items: center;
+}
+
+@media screen and (max-width: 918px) {
+  .elements {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}
+
+@media screen and (max-width: 703px) {
+  .elements {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
