@@ -1,0 +1,25 @@
+.authorization__input {
+    margin: 0 0 30px;
+    padding: 0;
+    border: none;
+    border-bottom: 2px solid rgba(204, 204, 204, 1);
+    width: 358px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 27px;
+    background-color: black;
+    color: #fff;
+}
+
+.authorization__input:last-of-type {
+    margin: 0 0 216px;
+}
+
+@media screen and (max-width: 400px) {
+    .authorization__input {
+        width: 260px;
+    }
+    .authorization__input:last-of-type {
+        margin: 0 0 173px;
+    }
+}

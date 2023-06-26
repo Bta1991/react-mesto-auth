@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import {
-    BrowserRouter,
-    Route,
-    Routes,
-    Navigate,
-    useNavigate,
-} from 'react-router-dom'
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import Login from './Login'
-// import Register from './Register';
+import Register from './Register'
+import { ProtectedRoute } from './ProtectedRoute'
 import PopupAvatar from './PopupAvatar'
 import PopupProfile from './PopupProfile'
 import PopupAdd from './PopupAdd'
@@ -28,6 +23,7 @@ function App() {
     const [cards, setCards] = useState([])
     const [selectedCard, setSelectedCard] = useState(null)
     const [cardToDelete, setCardToDelete] = useState(null)
+    const [isLoggedIn, setLoggedIn] = useState(false)
 
     const handleEditProfileClick = useCallback(() => {
         setIsEditProfilePopupOpen(true)
@@ -137,45 +133,38 @@ function App() {
             <div className="page">
                 <Header />
                 <Routes>
-                    {/* <Route path="/" element={loggedIn ? <Navigate to="/diary" replace /> : <Navigate to="/login" replace />} /> */}
                     <Route
                         path="/"
                         element={
-                            <Main
-                                onEditProfile={handleEditProfileClick}
-                                onAddPlace={handleAddPlaceClick}
-                                onEditAvatar={handleEditAvatarClick}
-                                cards={cards}
-                                onCardClick={handleCardClick}
-                                onCardLike={handleCardLike}
-                                // onCardDelete={handleCardDelete}
-                                onDeleteClick={handleDeleteClick}
+                            isLoggedIn ? (
+                                <Navigate to="/" replace />
+                            ) : (
+                                <Navigate to="/sign-in" replace />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <ProtectedRoute
+                                element={
+                                    <Main
+                                        onEditProfile={handleEditProfileClick}
+                                        onAddPlace={handleAddPlaceClick}
+                                        onEditAvatar={handleEditAvatarClick}
+                                        cards={cards}
+                                        onCardClick={handleCardClick}
+                                        onCardLike={handleCardLike}
+                                        onDeleteClick={handleDeleteClick}
+                                    />
+                                }
+                                isLoggedIn={isLoggedIn}
                             />
                         }
                     />
-                    <Route path="/login" element={<Login />} />
-
-                    {/* <Main
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    cards={cards}
-                    onCardClick={handleCardClick}
-                    onCardLike={handleCardLike}
-                    // onCardDelete={handleCardDelete}
-                    onDeleteClick={handleDeleteClick}
-                /> */}
+                    <Route path="/sign-in" element={<Login />} />
+                    <Route path="/sign-up" element={<Register />} />
                 </Routes>
-                {/* <Main
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    cards={cards}
-                    onCardClick={handleCardClick}
-                    onCardLike={handleCardLike}
-                    // onCardDelete={handleCardDelete}
-                    onDeleteClick={handleDeleteClick}
-                /> */}
                 <Footer />
 
                 <PopupAvatar
