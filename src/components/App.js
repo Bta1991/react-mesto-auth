@@ -11,6 +11,7 @@ import PopupProfile from './PopupProfile'
 import PopupAdd from './PopupAdd'
 import PopupDelete from './PopupDelete'
 import ImagePopup from './ImagePopup'
+import InfoTooltip from './InfoTooltip'
 import CurrentUserContext from '../contexts/CurrentUserContext'
 import api from '../utils/Api'
 
@@ -189,6 +190,9 @@ function App() {
                 />
 
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+                <InfoTooltip onClose={closeAllPopups} />
+
+
             </div>
         </CurrentUserContext.Provider>
     )

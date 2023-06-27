@@ -8,3 +8,9 @@
     opacity: 0.8;
     cursor: pointer;
 }
+
+@media screen and (max-width: 918px) {
+    .header__auth {
+        margin-right: 19px;
+    }
+}

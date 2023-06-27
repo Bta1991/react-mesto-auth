@@ -1,0 +1,12 @@
+.popup__info-text {
+    margin: 32px auto 24px;
+    text-align: center;
+    color: #000;
+}
+
+@media screen and (max-width: 475px) {
+    .popup__info-text {
+        margin: 40px auto 14px;
+        font-size: 20px;
+    }
+}

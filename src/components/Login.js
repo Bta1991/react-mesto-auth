@@ -54,7 +54,7 @@ const Login = () => {
                 {/* <input required id="password" name="password" type="password" value={formValue.password} onChange={handleChange} /> */}
                 <input
                     required
-                    className="authorization__input"
+                    className="authorization__input authorization__input-gap"
                     id="password"
                     type="password"
                     name="password"
