@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/react-mesto-auth/static/css/main.16891c52.css",
-    "main.js": "/react-mesto-auth/static/js/main.3a649ff7.js",
-    "static/js/787.2df4b1c8.chunk.js": "/react-mesto-auth/static/js/787.2df4b1c8.chunk.js",
-    "static/media/Inter-Medium.woff": "/react-mesto-auth/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
-    "static/media/Inter-Black.woff": "/react-mesto-auth/static/media/Inter-Black.c6938660eec019fefd68.woff",
-    "static/media/Inter-Regular.woff": "/react-mesto-auth/static/media/Inter-Regular.8c206db99195777c6769.woff",
-    "static/media/logo.svg": "/react-mesto-auth/static/media/logo.bbe2a6eafac19c3d031c272c424875ca.svg",
-    "index.html": "/react-mesto-auth/index.html",
-    "static/media/heart.svg": "/react-mesto-auth/static/media/heart.1ad06e85f169668a1f36.svg",
-    "static/media/access-denied.svg": "/react-mesto-auth/static/media/access-denied.df8eddf661ff88f2d0efd3d570d14309.svg",
-    "static/media/trash.svg": "/react-mesto-auth/static/media/trash.ce3b64935accf9b8212e.svg",
-    "static/media/access-granted.svg": "/react-mesto-auth/static/media/access-granted.1b6082f862eac35e2514460237d96ecc.svg",
-    "static/media/like.svg": "/react-mesto-auth/static/media/like.35948469632d0421d697.svg",
-    "static/media/close.svg": "/react-mesto-auth/static/media/close.973e77374abfb705de40.svg",
-    "static/media/edit.svg": "/react-mesto-auth/static/media/edit.62ad7537ee8eba852209.svg",
-    "static/media/avatar-edit.svg": "/react-mesto-auth/static/media/avatar-edit.a086f758840ae814ecde.svg",
-    "static/media/add.svg": "/react-mesto-auth/static/media/add.bed8c136e13907f5eefb.svg",
-    "main.16891c52.css.map": "/react-mesto-auth/static/css/main.16891c52.css.map",
-    "main.3a649ff7.js.map": "/react-mesto-auth/static/js/main.3a649ff7.js.map",
-    "787.2df4b1c8.chunk.js.map": "/react-mesto-auth/static/js/787.2df4b1c8.chunk.js.map"
+    "main.css": "/react-mesto-auth/sign-in/static/css/main.5943eb47.css",
+    "main.js": "/react-mesto-auth/sign-in/static/js/main.4603ad89.js",
+    "static/js/787.2df4b1c8.chunk.js": "/react-mesto-auth/sign-in/static/js/787.2df4b1c8.chunk.js",
+    "static/media/Inter-Medium.woff": "/react-mesto-auth/sign-in/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff": "/react-mesto-auth/sign-in/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/react-mesto-auth/sign-in/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/logo.svg": "/react-mesto-auth/sign-in/static/media/logo.bbe2a6eafac19c3d031c272c424875ca.svg",
+    "index.html": "/react-mesto-auth/sign-in/index.html",
+    "static/media/heart.svg": "/react-mesto-auth/sign-in/static/media/heart.1ad06e85f169668a1f36.svg",
+    "static/media/access-denied.svg": "/react-mesto-auth/sign-in/static/media/access-denied.df8eddf661ff88f2d0efd3d570d14309.svg",
+    "static/media/trash.svg": "/react-mesto-auth/sign-in/static/media/trash.ce3b64935accf9b8212e.svg",
+    "static/media/access-granted.svg": "/react-mesto-auth/sign-in/static/media/access-granted.1b6082f862eac35e2514460237d96ecc.svg",
+    "static/media/like.svg": "/react-mesto-auth/sign-in/static/media/like.35948469632d0421d697.svg",
+    "static/media/close.svg": "/react-mesto-auth/sign-in/static/media/close.973e77374abfb705de40.svg",
+    "static/media/edit.svg": "/react-mesto-auth/sign-in/static/media/edit.62ad7537ee8eba852209.svg",
+    "static/media/avatar-edit.svg": "/react-mesto-auth/sign-in/static/media/avatar-edit.a086f758840ae814ecde.svg",
+    "static/media/add.svg": "/react-mesto-auth/sign-in/static/media/add.bed8c136e13907f5eefb.svg",
+    "main.5943eb47.css.map": "/react-mesto-auth/sign-in/static/css/main.5943eb47.css.map",
+    "main.4603ad89.js.map": "/react-mesto-auth/sign-in/static/js/main.4603ad89.js.map",
+    "787.2df4b1c8.chunk.js.map": "/react-mesto-auth/sign-in/static/js/787.2df4b1c8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.16891c52.css",
-    "static/js/main.3a649ff7.js"
+    "static/css/main.5943eb47.css",
+    "static/js/main.4603ad89.js"
   ]
 }
