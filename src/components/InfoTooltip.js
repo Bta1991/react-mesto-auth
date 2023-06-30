@@ -3,7 +3,6 @@ import okPic from '../images/access-granted.svg'
 import rejectPic from '../images/access-denied.svg'
 
 function InfoTooltip({ isOpen, status, onClose }) {
-    // const popupClass = `popup popup_opened `
     const popupClass = `popup ${isOpen ? 'popup_opened' : ''}`
 
     return (

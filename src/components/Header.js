@@ -2,7 +2,7 @@ import logoPic from '../images/logo.svg'
 import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 
-function Header() {
+function Header({ email, handleSignout }) {
     return (
         <header className="header">
             <img className="header__logo" src={logoPic} alt="Место" />
@@ -28,13 +28,12 @@ function Header() {
                     element={
                         <>
                             <div className="header__auth">
-                                <p className="header__email">тут имейл</p>
-                                {/* <p className="identification__email">{userEmail}</p> */}
+                                <p className="header__email">{email}</p>
 
                                 <Link
                                     to="/sign-in"
                                     className="header__logout"
-                                    // onClick={handleSignout}
+                                    onClick={handleSignout}
                                 >
                                     Выйти
                                 </Link>

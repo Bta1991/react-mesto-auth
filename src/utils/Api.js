@@ -5,10 +5,9 @@ class Api {
     }
 
     _checkResponse(res) {
-        if (res.ok) {
-            return res.json()
-        }
-        return Promise.reject(`Ошибка подключения: ${res.status}`)
+        return res.ok
+            ? res.json()
+            : Promise.reject(`Ошибка получения данных: ${res.status}`)
     }
 
     getInitialsCards() {
@@ -24,8 +23,8 @@ class Api {
     }
 
     setUserInfo(data) {
-      console.log('вызов обновления')
-      console.log(data)
+        console.log('вызов обновления')
+        console.log(data)
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,

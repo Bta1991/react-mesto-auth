@@ -14,6 +14,7 @@ import ImagePopup from './ImagePopup'
 import InfoTooltip from './InfoTooltip'
 import CurrentUserContext from '../contexts/CurrentUserContext'
 import api from '../utils/Api'
+import { getContent } from '../utils/Auth'
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -25,6 +26,9 @@ function App() {
     const [selectedCard, setSelectedCard] = useState(null)
     const [cardToDelete, setCardToDelete] = useState(null)
     const [isLoggedIn, setLoggedIn] = useState(false)
+    const [userEmail, setUserEmail] = useState('')
+    const [isTooltipOpen, setTooltipOpen] = useState(false)
+    const [statusTooltip, setStatusTooltip] = useState(false)
 
     const handleEditProfileClick = useCallback(() => {
         setIsEditProfilePopupOpen(true)
@@ -47,6 +51,7 @@ function App() {
         setIsAddPlacePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
         setIsCardDeletePopupOpen(false)
+        setTooltipOpen(false)
         setSelectedCard(null)
     }, [])
 
@@ -64,7 +69,32 @@ function App() {
             }
         }
         fetchData()
+        checkToken()
     }, [])
+
+    const navigate = useNavigate()
+    const checkToken = () => {
+        const jwt = localStorage.getItem('jwt')
+        if (!jwt) {
+            return
+        }
+        getContent(jwt)
+            .then((res) => {
+                setUserEmail(res.data?.email)
+                setLoggedIn(true)
+                navigate('/')
+            })
+            .catch((err) => {
+                setLoggedIn(false)
+                console.log(err)
+            })
+    }
+    const handleSignout = () => {
+        localStorage.removeItem('jwt')
+        setLoggedIn(false)
+        navigate('/')
+        setUserEmail('')
+    }
 
     const handleCardLike = useCallback(
         (card) => {
@@ -129,13 +159,14 @@ function App() {
         },
         [cards, closeAllPopups]
     )
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="page">
-                <Header />
+                <Header email={userEmail} handleSignout={handleSignout} />
                 <Routes>
                     <Route
-                        path="/"
+                        path="*"
                         element={
                             isLoggedIn ? (
                                 <Navigate to="/" replace />
@@ -148,23 +179,38 @@ function App() {
                         path="/"
                         element={
                             <ProtectedRoute
-                                element={
-                                    <Main
-                                        onEditProfile={handleEditProfileClick}
-                                        onAddPlace={handleAddPlaceClick}
-                                        onEditAvatar={handleEditAvatarClick}
-                                        cards={cards}
-                                        onCardClick={handleCardClick}
-                                        onCardLike={handleCardLike}
-                                        onDeleteClick={handleDeleteClick}
-                                    />
-                                }
+                                element={Main}
                                 isLoggedIn={isLoggedIn}
+                                onEditProfile={handleEditProfileClick}
+                                onAddPlace={handleAddPlaceClick}
+                                onEditAvatar={handleEditAvatarClick}
+                                cards={cards}
+                                onCardClick={handleCardClick}
+                                onCardLike={handleCardLike}
+                                onDeleteClick={handleDeleteClick}
                             />
                         }
                     />
-                    <Route path="/sign-in" element={<Login />} />
-                    <Route path="/sign-up" element={<Register />} />
+                    <Route
+                        path="/sign-in"
+                        element={
+                            <Login
+                                handleLogin={setLoggedIn}
+                                handleTooltip={setTooltipOpen}
+                                handleStatus={setStatusTooltip}
+                                setUserEmail={setUserEmail}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/sign-up"
+                        element={
+                            <Register
+                                handleTooltip={setTooltipOpen}
+                                handleStatus={setStatusTooltip}
+                            />
+                        }
+                    />
                 </Routes>
                 <Footer />
 
@@ -188,11 +234,12 @@ function App() {
                     onClose={closeAllPopups}
                     onCardDelete={handleCardDelete}
                 />
-
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-                <InfoTooltip onClose={closeAllPopups} />
-
-
+                <InfoTooltip
+                    isOpen={isTooltipOpen}
+                    status={statusTooltip}
+                    onClose={closeAllPopups}
+                />
             </div>
         </CurrentUserContext.Provider>
     )

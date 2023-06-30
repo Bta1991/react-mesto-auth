@@ -1,0 +1,9 @@
+.header__email {
+    margin: 0;
+    padding-right: 24px;
+}
+
+.header__auth:hover {
+    opacity: 1;
+    cursor: default;
+}

@@ -1,46 +1,53 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-// import * as auth from '../auth.js';
-// import './styles/Login.css';
+import { useNavigate } from 'react-router-dom'
+import { authorize } from '../utils/Auth'
 
-const Login = () => {
-    // const Login = ({handleLogin}) => {
-    //   const [formValue, setFormValue] = useState({
-    //     username: '',
-    //     password: ''
-    //   })
-    //   const navigate = useNavigate();
+const Login = ({ handleLogin, handleTooltip, handleStatus, setUserEmail }) => {
+    const [formValue, setFormValue] = useState({
+        email: '',
+        password: '',
+    })
 
-    //   const handleChange = (e) => {
-    //     const {name, value} = e.target;
+    const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState('')
 
-    //     setFormValue({
-    //       ...formValue,
-    //       [name]: value
-    //     });
-    //   }
-    //   const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!formValue.username || !formValue.password){
-    //       return;
-    //     }
-    //     auth.authorize(formValue.username, formValue.password)
-    //       .then((data) => {
-    //         if (data.jwt){
-    //           setFormValue({username: '', password: ''});
-    //           handleLogin();
-    //           navigate('/diary', {replace: true});
-    //         }
-    //       })
-    //       .catch(err => console.log(err));
-    //   }
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormValue({
+            ...formValue,
+            [name]: value,
+        })
+    }
+
+    const handleSubmit = (e) => {
+        const { email, password } = formValue
+
+        e.preventDefault()
+
+        if (!email || !password) {
+            return
+        }
+
+        authorize(email, password)
+            .then((data) => {
+                localStorage.setItem('jwt', data.token)
+                handleLogin(true)
+                setUserEmail(email)
+                handleStatus(true)
+                handleTooltip(true)
+                navigate('/')
+            })
+            .catch((err) => {
+                setErrorMessage(err)
+                handleStatus(false)
+                handleTooltip(true)
+            })
+    }
 
     return (
         <div className="authorization">
             <h2 className="authorization__header">Вход</h2>
-            {/* <form onSubmit={handleSubmit} className="login__form"> */}
-            <form className="authorization__form">
-                {/* <input required id="username" name="username" type="text" value={formValue.username} onChange={handleChange} /> */}
+            <form className="authorization__form" onSubmit={handleSubmit}>
                 <input
                     required
                     className="authorization__input"
@@ -48,10 +55,9 @@ const Login = () => {
                     type="email"
                     name="email"
                     placeholder="E-mail"
-                    // value={values.email}
-                    // onChange={handleChange}
+                    value={formValue.email}
+                    onChange={handleChange}
                 />
-                {/* <input required id="password" name="password" type="password" value={formValue.password} onChange={handleChange} /> */}
                 <input
                     required
                     className="authorization__input authorization__input-gap"
@@ -59,11 +65,11 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Пароль"
-                    // value={values.password}
-                    // onChange={handleChange}
+                    value={formValue.password}
+                    onChange={handleChange}
                 />
                 <button type="submit" className="authorization__button">
-                    Войти
+                    {errorMessage || 'Войти'}
                 </button>
             </form>
         </div>
