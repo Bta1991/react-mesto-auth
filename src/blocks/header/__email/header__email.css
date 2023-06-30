@@ -3,7 +3,6 @@
     padding-right: 24px;
 }
 
-.header__auth:hover {
-    opacity: 1;
+.header__email:hover {
     cursor: default;
 }

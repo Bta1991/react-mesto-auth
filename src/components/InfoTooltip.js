@@ -2,7 +2,7 @@ import React from 'react'
 import okPic from '../images/access-granted.svg'
 import rejectPic from '../images/access-denied.svg'
 
-function InfoTooltip({ isOpen, status, onClose }) {
+function InfoTooltip({ isOpen, status, text, onClose }) {
     const popupClass = `popup ${isOpen ? 'popup_opened' : ''}`
 
     return (
@@ -14,9 +14,10 @@ function InfoTooltip({ isOpen, status, onClose }) {
                     alt="иконка"
                 />
                 <h2 className="popup__info-text">
-                    {status
+                    {text}
+                    {/* {status
                         ? 'Вы успешно зарегистрировались!'
-                        : 'Что-то пошло не так! Попробуйте ещё раз.'}
+                        : 'Что-то пошло не так! Попробуйте ещё раз.'} */}
                 </h2>
                 <button
                     type="button"

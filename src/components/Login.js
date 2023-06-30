@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { authorize } from '../utils/Auth'
 
-const Login = ({ handleLogin, handleTooltip, handleStatus, setUserEmail }) => {
+const Login = ({
+    handleLogin,
+    handleTooltip,
+    handleStatus,
+    handeTextTooltip,
+    setUserEmail,
+}) => {
     const [formValue, setFormValue] = useState({
         email: '',
         password: '',
     })
 
     const navigate = useNavigate()
-    const [errorMessage, setErrorMessage] = useState('')
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -33,13 +38,14 @@ const Login = ({ handleLogin, handleTooltip, handleStatus, setUserEmail }) => {
                 localStorage.setItem('jwt', data.token)
                 handleLogin(true)
                 setUserEmail(email)
+                handleStatus(true)
+                handleTooltip(true)
+                handeTextTooltip('Вы восхитительны!')
                 navigate('/')
-                // handleStatus(true) //сделать динамический текст tooltip
-                // handleTooltip(true)
             })
             .catch((err) => {
-                setErrorMessage(err)
                 handleStatus(false)
+                handeTextTooltip(err)
                 handleTooltip(true)
             })
     }
@@ -69,7 +75,7 @@ const Login = ({ handleLogin, handleTooltip, handleStatus, setUserEmail }) => {
                     onChange={handleChange}
                 />
                 <button type="submit" className="authorization__button">
-                    {errorMessage || 'Войти'}
+                    Войти
                 </button>
             </form>
         </div>

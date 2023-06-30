@@ -29,6 +29,7 @@ function App() {
     const [userEmail, setUserEmail] = useState('')
     const [isTooltipOpen, setTooltipOpen] = useState(false)
     const [statusTooltip, setStatusTooltip] = useState(false)
+    const [textTooltip, setTextTooltip] = useState('')
 
     const handleEditProfileClick = useCallback(() => {
         setIsEditProfilePopupOpen(true)
@@ -203,6 +204,7 @@ function App() {
                                 handleLogin={setLoggedIn}
                                 handleTooltip={setTooltipOpen}
                                 handleStatus={setStatusTooltip}
+                                handeTextTooltip={setTextTooltip}
                                 setUserEmail={setUserEmail}
                             />
                         }
@@ -213,6 +215,7 @@ function App() {
                             <Register
                                 handleTooltip={setTooltipOpen}
                                 handleStatus={setStatusTooltip}
+                                handeTextTooltip={setTextTooltip}
                             />
                         }
                     />
@@ -243,6 +246,7 @@ function App() {
                 <InfoTooltip
                     isOpen={isTooltipOpen}
                     status={statusTooltip}
+                    text={textTooltip}
                     onClose={closeAllPopups}
                 />
             </div>

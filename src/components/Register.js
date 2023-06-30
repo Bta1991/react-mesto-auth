@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../utils/Auth'
 
-const Register = ({ handleTooltip, handleStatus }) => {
+const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
     const [formValue, setFormValue] = useState({
         email: '',
         password: '',
@@ -33,9 +33,10 @@ const Register = ({ handleTooltip, handleStatus }) => {
                 navigate('/sign-in')
                 handleStatus(true)
                 handleTooltip(true)
+                handeTextTooltip('Вы успешно зарегистрировались!')
             })
             .catch((err) => {
-                setErrorMessage(err)
+                handeTextTooltip(err)
                 handleStatus(false)
                 handleTooltip(true)
             })
