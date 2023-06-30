@@ -33,9 +33,9 @@ const Login = ({ handleLogin, handleTooltip, handleStatus, setUserEmail }) => {
                 localStorage.setItem('jwt', data.token)
                 handleLogin(true)
                 setUserEmail(email)
-                handleStatus(true)
-                handleTooltip(true)
                 navigate('/')
+                // handleStatus(true) //сделать динамический текст tooltip
+                // handleTooltip(true)
             })
             .catch((err) => {
                 setErrorMessage(err)

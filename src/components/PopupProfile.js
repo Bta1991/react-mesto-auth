@@ -15,7 +15,7 @@ function PopupProfile({ isOpen, onClose, onUpdateUser }) {
             name: currentUser.name,
             about: currentUser.about,
         })
-    }, [currentUser])
+    }, [currentUser, isOpen])
 
     function handleSubmit(e) {
         e.preventDefault()

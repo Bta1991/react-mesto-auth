@@ -55,22 +55,24 @@ function App() {
         setSelectedCard(null)
     }, [])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [userData, cardsData] = await Promise.all([
-                    api.getUserInfo(),
-                    api.getInitialsCards(),
-                ])
-                setCurrentUser(userData)
-                setCards(cardsData)
-            } catch (err) {
-                console.error(err)
-            }
+    const fetchData = async () => {
+        try {
+            const [userData, cardsData] = await Promise.all([
+                api.getUserInfo(),
+                api.getInitialsCards(),
+            ])
+            setCurrentUser(userData)
+            setCards(cardsData)
+        } catch (err) {
+            console.error(err)
         }
-        fetchData()
-        checkToken()
-    }, [])
+    }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            fetchData()
+        }
+    }, [isLoggedIn])
 
     const navigate = useNavigate()
     const checkToken = () => {
@@ -95,6 +97,9 @@ function App() {
         navigate('/')
         setUserEmail('')
     }
+    useEffect(() => {
+        checkToken()
+    }, [])
 
     const handleCardLike = useCallback(
         (card) => {
@@ -152,7 +157,7 @@ function App() {
         (card) => {
             api.addCard(card)
                 .then((newCard) => {
-                    setCards([newCard, ...cards])
+                    setCards((cards) => [newCard, ...cards])
                     closeAllPopups()
                 })
                 .catch((err) => console.error(err))

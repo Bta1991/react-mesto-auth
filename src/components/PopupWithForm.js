@@ -15,12 +15,12 @@ function PopupWithForm({
                     className="popup__form"
                     name={name}
                     onSubmit={onSubmit}
-                    noValidate
+                    // noValidate //вернуть когда реализую валидацию
                 >
                     {children}
                     <button
                         type="submit"
-                        className="popup__save" //popup__save_disabled
+                        className="popup__save" //popup__save_disabled //вернуть когда реализую валидацию
                         aria-label={buttonText || 'Сохранить'}
                     >
                         {buttonText || 'Сохранить'}
