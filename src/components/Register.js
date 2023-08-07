@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useForm } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { register } from '../utils/Auth'
 
 const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
-    const [formValue, setFormValue] = useState({
+    const [values, setFormValue] = useState({
         email: '',
         password: '',
         confirmPassword: '',
     })
 
     const handleChange = (e) => {
-        const { name, value } = e.target
         setFormValue((prevState) => ({
             ...prevState,
             [name]: value,
@@ -21,7 +20,7 @@ const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
     const [errorMessage, setErrorMessage] = useState('')
 
     const handleSubmit = (e) => {
-        const { email, password, confirmPassword } = formValue
+        const { email, password, confirmPassword } = values
 
         e.preventDefault()
         if (password !== confirmPassword) {
@@ -53,7 +52,7 @@ const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
                     name="email"
                     type="email"
                     placeholder="E-mail"
-                    value={formValue.email}
+                    value={values.email}
                     onChange={handleChange}
                 />
                 <input
@@ -63,7 +62,7 @@ const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
                     name="password"
                     type="password"
                     placeholder="Пароль"
-                    value={formValue.password}
+                    value={values.password}
                     onChange={handleChange}
                 />
                 {/* добавлено подтверждение пароля */}
@@ -74,7 +73,7 @@ const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
                     name="confirmPassword"
                     type="password"
                     placeholder="Введите пароль ещё раз"
-                    value={formValue.confirmPassword}
+                    value={values.confirmPassword}
                     onChange={handleChange}
                 />
 
