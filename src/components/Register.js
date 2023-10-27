@@ -10,6 +10,7 @@ const Register = ({ handleTooltip, handleStatus, handeTextTooltip }) => {
     })
 
     const handleChange = (e) => {
+      const { name, value } = e.target
         setFormValue((prevState) => ({
             ...prevState,
             [name]: value,
